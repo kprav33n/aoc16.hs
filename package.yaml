@@ -24,6 +24,8 @@ dependencies:
 
 library:
   source-dirs: src
+  dependencies:
+  - split
 
 executables:
   aoc16-exe:
@@ -46,3 +48,5 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - aoc16
+    - tasty
+    - tasty-hunit
