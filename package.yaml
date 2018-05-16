@@ -1,0 +1,48 @@
+name:                aoc16
+version:             0.1.0.0
+github:              "kprav33n/aoc16.hs"
+license:             BSD3
+author:              "Praveen Kumar"
+maintainer:          "praveen+git@kumar.in"
+copyright:           "Copyright (C) 2018 Praveen Kumar. All rights reserved."
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/kprav33n/aoc16.rs#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+executables:
+  aoc16-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aoc16
+
+tests:
+  aoc16-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - aoc16
