@@ -7,7 +7,7 @@ main :: IO ()
 main = defaultMain tests
 
 tests :: TestTree
-tests = testGroup "Tests" [taxicabDistanceTests, makeInstructionsTests]
+tests = testGroup "Tests" [taxicabDistanceTests, makeInstructionsTests, hqDistanceTests]
 
 taxicabDistanceTests :: TestTree
 taxicabDistanceTests = testGroup "taxicabDistance unit test"
@@ -34,4 +34,10 @@ makeInstructionsTests = testGroup "makeInstructions unit test"
 
   , testCase "R5, L5, R5, R3" $
     makeInstructions "R5, L5, R5, R3" @?= [R 5, L 5, R 5, R 3]
+  ]
+
+hqDistanceTests :: TestTree
+hqDistanceTests = testGroup "hqDistance unit test"
+  [ testCase "R8, R4, R4, R8" $
+    hqDistance [R 8, R 4, R 4, R 8] @?= 4
   ]
