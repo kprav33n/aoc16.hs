@@ -54,30 +54,42 @@ distance :: Location -> Location -> Int
 distance (Location x1 y1 _) (Location x2 y2 _) =
   abs (x1 - x2) + abs (y1 - y2)
 
+northOf :: Int -> Int -> Int -> Location
+northOf x y units = Location x (y + units) North
+
+southOf :: Int -> Int -> Int -> Location
+southOf x y units = Location x (y - units) South
+
+eastOf :: Int -> Int -> Int -> Location
+eastOf x y units = Location (x + units) y East
+
+westOf :: Int -> Int -> Int -> Location
+westOf x y units = Location (x - units) y West
+
 locationAfter :: Location -> Instruction -> Location
 locationAfter (Location x y o) i =
   case i of
       L a -> case o of
-        North -> Location (x - a) y West
-        South -> Location (x + a) y East
-        East -> Location x (y + a) North
-        West -> Location x (y - a) South
+        North -> westOf x y a
+        South -> eastOf x y a
+        East -> northOf x y a
+        West -> southOf x y a
       R a -> case o of
-        North -> Location (x + a) y East
-        South -> Location (x - a) y West
-        East -> Location x (y - a) South
-        West -> Location x (y + a) North
+        North -> eastOf x y a
+        South -> westOf x y a
+        East -> southOf x y a
+        West -> northOf x y a
 
 allLocationsUntil :: Location -> Instruction -> [Location]
 allLocationsUntil (Location x y o) i =
   case i of
       L q -> case o of
-        North -> map (\a -> Location (x - a) y West) [1..q]
-        South -> map (\a -> Location (x + a) y East) [1..q]
-        East -> map (\a -> Location x (y + a) North) [1..q]
-        West -> map (\a -> Location x (y - a) South) [1..q]
+        North -> map (westOf x y) [1..q]
+        South -> map (eastOf x y) [1..q]
+        East -> map (northOf x y) [1..q]
+        West -> map (southOf x y) [1..q]
       R q -> case o of
-        North -> map (\a -> Location (x + a) y East) [1..q]
-        South -> map (\a -> Location (x - a) y West) [1..q]
-        East -> map (\a -> Location x (y - a) South) [1..q]
-        West -> map (\a -> Location x (y + a) North) [1..q]
+        North -> map (eastOf x y) [1..q]
+        South -> map (westOf x y) [1..q]
+        East -> map (southOf x y) [1..q]
+        West -> map (northOf x y) [1..q]
