@@ -27,6 +27,7 @@ library:
   dependencies:
   - split
   - containers
+  - text
 
 executables:
   aoc16-exe:

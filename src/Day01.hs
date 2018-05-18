@@ -1,10 +1,10 @@
-module Lib
-    (
-      makeInstructions,
-      taxicabDistance,
-      hqDistance,
-      Instruction (..)
-    ) where
+module Day01
+  (
+    makeInstructions,
+    taxicabDistance,
+    hqDistance,
+    Instruction (..)
+  ) where
 
 import Data.List
 import Data.List.Split
