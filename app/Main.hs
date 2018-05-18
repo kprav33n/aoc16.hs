@@ -1,9 +1,11 @@
 module Main where
 
 import System.Environment
+import Data.Text (pack)
 
 import Day01
 import Day02
+import Day03
 
 main :: IO ()
 main = do
@@ -21,4 +23,7 @@ main = do
     "day02b" -> do
       contents <- getContents
       putStrLn $ bathroomDiamondCode $ Day02.makeInstructions contents
+    "day03a" -> do
+      contents <- getContents
+      print $ numPossibleTriangles $ Day03.parseInput $ pack contents
     na -> putStrLn $ "Unknown command: " ++ na

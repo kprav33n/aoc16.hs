@@ -1,13 +1,16 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 import Test.Tasty
 import Test.Tasty.HUnit
 
 import Day01
 import Day02
+import Day03
 
 main :: IO ()
 main = defaultMain tests
 tests :: TestTree
-tests = testGroup "Tests" [day01Tests, day02Tests]
+tests = testGroup "Tests" [day01Tests, day02Tests, day03Tests]
 
 day01Tests :: TestTree
 day01Tests = testGroup "Day01 tests" [taxicabDistanceTests, makeInstructionsTests, hqDistanceTests]
@@ -55,4 +58,10 @@ bathroomCodeTests = testGroup "bathroomCode unit test"
 
   , testCase "Diamond code" $
     bathroomDiamondCode (Day02.makeInstructions "ULL\nRRDDD\nLURDL\nUUUUD") @?= "5DB3"
+  ]
+
+day03Tests :: TestTree
+day03Tests = testGroup "Day 03 tests" [
+  testCase "numPossibleTriangles" $
+    numPossibleTriangles (Day03.parseInput "5  10  25\n 5   7  9") @?= 1
   ]

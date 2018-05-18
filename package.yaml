@@ -39,6 +39,7 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - aoc16
+    - text
 
 tests:
   aoc16-test:
@@ -52,3 +53,4 @@ tests:
     - aoc16
     - tasty
     - tasty-hunit
+    - text
