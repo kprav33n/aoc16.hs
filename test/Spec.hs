@@ -50,6 +50,9 @@ day02Tests = testGroup "Day02 tests" [bathroomCodeTests]
 
 bathroomCodeTests :: TestTree
 bathroomCodeTests = testGroup "bathroomCode unit test"
-  [ testCase "No instructions" $
+  [ testCase "Simple code" $
     bathroomCode (Day02.makeInstructions "ULL\nRRDDD\nLURDL\nUUUUD") @?= "1985"
+
+  , testCase "Diamond code" $
+    bathroomDiamondCode (Day02.makeInstructions "ULL\nRRDDD\nLURDL\nUUUUD") @?= "5DB3"
   ]

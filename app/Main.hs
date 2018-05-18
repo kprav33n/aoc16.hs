@@ -18,4 +18,7 @@ main = do
     "day02a" -> do
       contents <- getContents
       putStrLn $ bathroomCode $ Day02.makeInstructions contents
+    "day02b" -> do
+      contents <- getContents
+      putStrLn $ bathroomDiamondCode $ Day02.makeInstructions contents
     na -> putStrLn $ "Unknown command: " ++ na

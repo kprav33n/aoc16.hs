@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Day02 (makeInstructions, bathroomCode) where
+module Day02 (makeInstructions, bathroomCode, bathroomDiamondCode) where
 
 import qualified Data.Text as T
 
@@ -21,38 +21,51 @@ makeInstructions ls =
             _ -> undefined
 
 bathroomCode :: [[Instruction]] -> String
-bathroomCode is = fst $ foldl singleCode ("",(1,1)) is
-  where singleCode (cs,p) i = (cs ++ c,(x,y))
-          where (x,y) = executeInstruction p i
-                c = show $ keypad!!x!!y
+bathroomCode is = fst $ foldl singleCode ("",(2,2)) is
+  where singleCode (cs,p) i = (cs ++ [c],(x,y))
+          where (x,y) = executeInstruction simpleKeypad p i
+                c = simpleKeypad!!x!!y
+
+bathroomDiamondCode :: [[Instruction]] -> String
+bathroomDiamondCode is = fst $ foldl singleCode ("",(3,1)) is
+  where singleCode (cs,p) i = (cs ++ [c],(x,y))
+          where (x,y) = executeInstruction complexKeypad p i
+                c = complexKeypad!!x!!y
 
 -- Internals.
 
-keypad :: [[Int]]
-keypad = [[1,2,3],[4,5,6],[7,8,9]]
+simpleKeypad :: [[Char]]
+simpleKeypad = [['0','0','0','0','0']
+               ,['0','1','2','3','0']
+               ,['0','4','5','6','0']
+               ,['0','7','8','9','0']
+               ,['0','0','0','0','0']]
 
-width :: Int
-width = length $ head keypad
+complexKeypad :: [[Char]]
+complexKeypad = [['0','0','0','0','0','0','0']
+                ,['0','0','0','1','0','0','0']
+                ,['0','0','2','3','4','0','0']
+                ,['0','5','6','7','8','9','0']
+                ,['0','0','A','B','C','0','0']
+                ,['0','0','0','D','0','0','0']
+                ,['0','0','0','0','0','0','0']]
 
-height :: Int
-height = length keypad
-
-boundedPos :: Pos -> Maybe Pos
-boundedPos (x,y)
-  | x >= 0 && x < height && y >= 0 && y < width = Just (x,y)
+boundedPos :: [[Char]] -> Pos -> Maybe Pos
+boundedPos kp (x,y)
+  | kp!!x!!y /= '0' = Just (x,y)
   | otherwise = Nothing
 
-nextPos :: Pos -> Instruction -> Maybe Pos
-nextPos (x,y) i =
-  boundedPos $ case i of
+nextPos :: [[Char]] -> Pos -> Instruction -> Maybe Pos
+nextPos kp (x,y) i =
+  boundedPos kp $ case i of
                  U -> (x-1,y)
                  D -> (x+1,y)
                  R -> (x,y+1)
                  L -> (x,y-1)
 
-executeInstruction :: Pos -> [Instruction] -> Pos
-executeInstruction p [] = p
-executeInstruction p (i:is) =
-  case nextPos p i of
-    Just n -> executeInstruction n is
-    Nothing -> executeInstruction p is
+executeInstruction :: [[Char]] -> Pos -> [Instruction] -> Pos
+executeInstruction kp p [] = p
+executeInstruction kp p (i:is) =
+  case nextPos kp p i of
+    Just n -> executeInstruction kp n is
+    Nothing -> executeInstruction kp p is
