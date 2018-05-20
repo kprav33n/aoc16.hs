@@ -22,3 +22,8 @@ before_install:
 script:
   - stack --no-terminal -j2 --install-ghc test
   - stack --no-terminal -j2 build
+
+# Caching so the next build will be fast too.
+cache:
+  directories:
+  - $HOME/.stack
