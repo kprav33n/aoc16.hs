@@ -6,6 +6,7 @@ import Data.Text (pack)
 import Day01
 import Day02
 import Day03
+import Day04
 
 main :: IO ()
 main = do
@@ -29,4 +30,7 @@ main = do
     "day03b" -> do
       contents <- getContents
       print $ numPossibleTriangles2 $ Day03.parseInput $ pack contents
+    "day04a" -> do
+      contents <- getContents
+      print $ sectorSum (Day04.parseInput contents)
     na -> putStrLn $ "Unknown command: " ++ na

@@ -6,17 +6,18 @@ import Test.Tasty.HUnit
 import Day01
 import Day02
 import Day03
+import Day04
 
 main :: IO ()
 main = defaultMain tests
 tests :: TestTree
-tests = testGroup "Tests" [day01Tests, day02Tests, day03Tests]
+tests = testGroup "Tests" [day01Tests, day02Tests, day03Tests, day04Tests]
 
 day01Tests :: TestTree
 day01Tests = testGroup "Day01 tests" [taxicabDistanceTests, makeInstructionsTests, hqDistanceTests]
 
 taxicabDistanceTests :: TestTree
-taxicabDistanceTests = testGroup "taxicabDistance unit test"
+taxicabDistanceTests = testGroup "taxicabDistance"
   [ testCase "No instructions" $
     taxicabDistance [] @?= 0
 
@@ -31,7 +32,7 @@ taxicabDistanceTests = testGroup "taxicabDistance unit test"
   ]
 
 makeInstructionsTests :: TestTree
-makeInstructionsTests = testGroup "makeInstructions unit test"
+makeInstructionsTests = testGroup "makeInstructions"
   [ testCase "No instructions" $
     Day01.makeInstructions "" @?= []
 
@@ -49,22 +50,29 @@ hqDistanceTests = testGroup "hqDistance unit test"
   ]
 
 day02Tests :: TestTree
-day02Tests = testGroup "Day02 tests" [bathroomCodeTests]
-
-bathroomCodeTests :: TestTree
-bathroomCodeTests = testGroup "bathroomCode unit test"
-  [ testCase "Simple code" $
+day02Tests = testGroup "Day02 tests"
+  [ testCase "bathroomCode" $
     bathroomCode (Day02.makeInstructions "ULL\nRRDDD\nLURDL\nUUUUD") @?= "1985"
 
-  , testCase "Diamond code" $
+  , testCase "bathroomDiamondCode" $
     bathroomDiamondCode (Day02.makeInstructions "ULL\nRRDDD\nLURDL\nUUUUD") @?= "5DB3"
   ]
 
 day03Tests :: TestTree
-day03Tests = testGroup "Day 03 tests" [
-  testCase "numPossibleTriangles" $
+day03Tests = testGroup "Day 03 tests"
+  [
+    testCase "numPossibleTriangles" $
     numPossibleTriangles (Day03.parseInput "5  10  25\n 5   7  9") @?= 1
 
   , testCase "numPossibleTriangles" $
     numPossibleTriangles2 (Day03.parseInput "5  6  11\n 10   7  2\n25 6 20") @?= 1
+  ]
+
+day04Tests :: TestTree
+day04Tests = testGroup "Day 04 tests"
+  [ testCase "sectorSum" $
+    sectorSum (Day04.parseInput "aaaaa-bbb-z-y-x-123[abxyz]\n\
+                                \a-b-c-d-e-f-g-h-987[abcde]\n\
+                                \not-a-real-room-404[oarel]\n\
+                                \totally-real-room-200[decoy]") @?= 1514
   ]
