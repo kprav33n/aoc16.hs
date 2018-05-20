@@ -64,4 +64,7 @@ day03Tests :: TestTree
 day03Tests = testGroup "Day 03 tests" [
   testCase "numPossibleTriangles" $
     numPossibleTriangles (Day03.parseInput "5  10  25\n 5   7  9") @?= 1
+
+  , testCase "numPossibleTriangles" $
+    numPossibleTriangles2 (Day03.parseInput "5  6  11\n 10   7  2\n25 6 20") @?= 1
   ]

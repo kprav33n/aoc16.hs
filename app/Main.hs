@@ -26,4 +26,7 @@ main = do
     "day03a" -> do
       contents <- getContents
       print $ numPossibleTriangles $ Day03.parseInput $ pack contents
+    "day03b" -> do
+      contents <- getContents
+      print $ numPossibleTriangles2 $ Day03.parseInput $ pack contents
     na -> putStrLn $ "Unknown command: " ++ na
