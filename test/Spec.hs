@@ -75,4 +75,11 @@ day04Tests = testGroup "Day 04 tests"
                                 \a-b-c-d-e-f-g-h-987[abcde]\n\
                                 \not-a-real-room-404[oarel]\n\
                                 \totally-real-room-200[decoy]") @?= 1514
+  , testCase "decryptEntry" $
+    decryptEntry ("qzmt-zixmtkozy-ivhz",343,"xxx") @?= ("very encrypted name",343,"xxx")
+
+  , testCase "northPoleSector" $
+    northPoleSector (Day04.parseInput "ghkmaihex-hucxvm-lmhktzx-267[hmxka]\n\
+                                      \ftzgxmbv-vtgwr-wxlbzg-267[gbtvw]\n\
+                                      \ubhatstkwhnl-xzz-kxvxbobgz-267[umogq]") @?= 267
   ]

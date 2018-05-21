@@ -33,4 +33,7 @@ main = do
     "day04a" -> do
       contents <- getContents
       print $ sectorSum (Day04.parseInput contents)
+    "day04b" -> do
+      contents <- getContents
+      print $ northPoleSector (Day04.parseInput contents)
     na -> putStrLn $ "Unknown command: " ++ na

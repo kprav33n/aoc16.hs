@@ -1,5 +1,6 @@
-module Day04 (parseInput, sectorSum) where
+module Day04 (parseInput, sectorSum, decryptEntry, northPoleSector) where
 
+import Data.Char (chr, ord)
 import Data.List (sort, sortBy)
 import Data.Map (fromListWith, toList)
 
@@ -11,6 +12,11 @@ parseInput = map readEntry . lines
 sectorSum :: [Entry] -> Int
 sectorSum = sum . map sector . filter isRealRoom
 
+decryptEntry :: Entry -> Entry
+decryptEntry (name,sec,ck) = (decryptName sec name,sec,ck)
+
+northPoleSector :: [Entry] -> Int
+northPoleSector = sector . head . filter (\e -> room e == "northpole object storage") . map decryptEntry
 
 -- Internals.
 
@@ -55,3 +61,16 @@ isRealRoom (name,_,ck) = (top5 . stripDash) name == sort ck
 
 sector :: Entry -> Int
 sector (_,sec,_) = sec
+
+room :: Entry -> String
+room (n,_,_) = n
+
+decryptName :: Int -> String -> String
+decryptName i = map (shiftChar i)
+
+shiftChar :: Int -> Char -> Char
+shiftChar _ '-' = ' '
+shiftChar i ch =
+      chr $ (+) a $ (v + i) `mod` 26
+  where a = ord 'a'
+        v = ord ch - a
