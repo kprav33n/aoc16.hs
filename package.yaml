@@ -28,6 +28,8 @@ library:
   - split
   - containers
   - text
+  - bytestring
+  - pureMD5
 
 executables:
   aoc16-exe:

@@ -7,11 +7,12 @@ import Day01
 import Day02
 import Day03
 import Day04
+import Day05
 
 main :: IO ()
 main = defaultMain tests
 tests :: TestTree
-tests = testGroup "Tests" [day01Tests, day02Tests, day03Tests, day04Tests]
+tests = testGroup "Tests" [day01Tests, day02Tests, day03Tests, day04Tests, day05Tests]
 
 day01Tests :: TestTree
 day01Tests = testGroup "Day01 tests" [taxicabDistanceTests, makeInstructionsTests, hqDistanceTests]
@@ -82,4 +83,10 @@ day04Tests = testGroup "Day 04 tests"
     northPoleSector (Day04.parseInput "ghkmaihex-hucxvm-lmhktzx-267[hmxka]\n\
                                       \ftzgxmbv-vtgwr-wxlbzg-267[gbtvw]\n\
                                       \ubhatstkwhnl-xzz-kxvxbobgz-267[umogq]") @?= 267
+  ]
+
+day05Tests :: TestTree
+day05Tests = testGroup "Day 05 tests"
+  [ testCase "doorPassword" $
+    doorPassword 2 "abc" @?= "18"
   ]

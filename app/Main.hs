@@ -7,6 +7,7 @@ import Day01
 import Day02
 import Day03
 import Day04
+import Day05
 
 main :: IO ()
 main = do
@@ -36,4 +37,7 @@ main = do
     "day04b" -> do
       contents <- getContents
       print $ northPoleSector (Day04.parseInput contents)
+    "day05a" -> do
+      line <- getLine
+      putStrLn $ doorPassword 8 line
     na -> putStrLn $ "Unknown command: " ++ na
