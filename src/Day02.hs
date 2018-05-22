@@ -34,28 +34,28 @@ bathroomDiamondCode is = fst $ foldl singleCode ("",(3,1)) is
 
 -- Internals.
 
-simpleKeypad :: [[Char]]
-simpleKeypad = [['0','0','0','0','0']
-               ,['0','1','2','3','0']
-               ,['0','4','5','6','0']
-               ,['0','7','8','9','0']
-               ,['0','0','0','0','0']]
+simpleKeypad :: [String]
+simpleKeypad = ["00000"
+               ,"01230"
+               ,"04560"
+               ,"07890"
+               ,"00000"]
 
-complexKeypad :: [[Char]]
-complexKeypad = [['0','0','0','0','0','0','0']
-                ,['0','0','0','1','0','0','0']
-                ,['0','0','2','3','4','0','0']
-                ,['0','5','6','7','8','9','0']
-                ,['0','0','A','B','C','0','0']
-                ,['0','0','0','D','0','0','0']
-                ,['0','0','0','0','0','0','0']]
+complexKeypad :: [String]
+complexKeypad = ["0000000"
+                ,"0001000"
+                ,"0023400"
+                ,"0567890"
+                ,"00ABC00"
+                ,"000D000"
+                ,"0000000"]
 
-boundedPos :: [[Char]] -> Pos -> Maybe Pos
+boundedPos :: [String] -> Pos -> Maybe Pos
 boundedPos kp (x,y)
   | kp!!x!!y /= '0' = Just (x,y)
   | otherwise = Nothing
 
-nextPos :: [[Char]] -> Pos -> Instruction -> Maybe Pos
+nextPos :: [String] -> Pos -> Instruction -> Maybe Pos
 nextPos kp (x,y) i =
   boundedPos kp $ case i of
                  U -> (x-1,y)
@@ -63,7 +63,7 @@ nextPos kp (x,y) i =
                  R -> (x,y+1)
                  L -> (x,y-1)
 
-executeInstruction :: [[Char]] -> Pos -> [Instruction] -> Pos
+executeInstruction :: [String] -> Pos -> [Instruction] -> Pos
 executeInstruction kp p [] = p
 executeInstruction kp p (i:is) =
   case nextPos kp p i of

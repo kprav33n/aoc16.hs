@@ -1,5 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
 module Day06 (correctMessage) where
 
 import Data.List (sortOn, transpose)
