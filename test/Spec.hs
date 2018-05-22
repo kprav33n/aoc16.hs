@@ -8,11 +8,20 @@ import Day02
 import Day03
 import Day04
 import Day05
+import Day06
 
 main :: IO ()
 main = defaultMain tests
+
 tests :: TestTree
-tests = testGroup "Tests" [day01Tests, day02Tests, day03Tests, day04Tests, day05Tests]
+tests = testGroup "Tests"
+  [ day01Tests
+  , day02Tests
+  , day03Tests
+  , day04Tests
+  , day05Tests
+  , day06Tests
+  ]
 
 day01Tests :: TestTree
 day01Tests = testGroup "Day01 tests" [taxicabDistanceTests, makeInstructionsTests, hqDistanceTests]
@@ -92,4 +101,25 @@ day05Tests = testGroup "Day 05 tests"
 
   , testCase "doorPassword2" $
     doorPassword2 2 "abc" @?= "05"
+  ]
+
+day06Tests :: TestTree
+day06Tests = testGroup "Day 05 tests"
+  [ testCase "correctMessage" $
+    correctMessage "eedadn\n\
+                    \drvtee\n\
+                    \eandsr\n\
+                    \raavrd\n\
+                    \atevrs\n\
+                    \tsrnev\n\
+                    \sdttsa\n\
+                    \rasrtv\n\
+                    \nssdts\n\
+                    \ntnada\n\
+                    \svetve\n\
+                    \tesnvt\n\
+                    \vntsnd\n\
+                    \vrdear\n\
+                    \dvrsen\n\
+                    \enarar\n" @?= "easter"
   ]

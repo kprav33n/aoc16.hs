@@ -8,6 +8,7 @@ import Day02
 import Day03
 import Day04
 import Day05
+import Day06
 
 main :: IO ()
 main = do
@@ -43,4 +44,7 @@ main = do
     "day05b" -> do
       line <- getLine
       putStrLn $ doorPassword2 8 line
+    "day06a" -> do
+      contents <- getContents
+      putStrLn $ correctMessage contents
     na -> putStrLn $ "Unknown command: " ++ na
