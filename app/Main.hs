@@ -46,5 +46,8 @@ main = do
       putStrLn $ doorPassword2 8 line
     "day06a" -> do
       contents <- getContents
-      putStrLn $ correctMessage contents
+      putStrLn $ correctMessage last contents
+    "day06b" -> do
+      contents <- getContents
+      putStrLn $ correctMessage head contents
     na -> putStrLn $ "Unknown command: " ++ na

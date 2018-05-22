@@ -105,21 +105,38 @@ day05Tests = testGroup "Day 05"
 
 day06Tests :: TestTree
 day06Tests = testGroup "Day 06"
-  [ testCase "correctMessage" $
-    correctMessage "eedadn\n\
-                    \drvtee\n\
-                    \eandsr\n\
-                    \raavrd\n\
-                    \atevrs\n\
-                    \tsrnev\n\
-                    \sdttsa\n\
-                    \rasrtv\n\
-                    \nssdts\n\
-                    \ntnada\n\
-                    \svetve\n\
-                    \tesnvt\n\
-                    \vntsnd\n\
-                    \vrdear\n\
-                    \dvrsen\n\
-                    \enarar\n" @?= "easter"
+  [ testCase "correctMessage - most frequent" $
+    correctMessage last "eedadn\n\
+                         \drvtee\n\
+                         \eandsr\n\
+                         \raavrd\n\
+                         \atevrs\n\
+                         \tsrnev\n\
+                         \sdttsa\n\
+                         \rasrtv\n\
+                         \nssdts\n\
+                         \ntnada\n\
+                         \svetve\n\
+                         \tesnvt\n\
+                         \vntsnd\n\
+                         \vrdear\n\
+                         \dvrsen\n\
+                         \enarar\n" @?= "easter"
+  , testCase "correctMessage - least frequent" $
+    correctMessage head "eedadn\n\
+                         \drvtee\n\
+                         \eandsr\n\
+                         \raavrd\n\
+                         \atevrs\n\
+                         \tsrnev\n\
+                         \sdttsa\n\
+                         \rasrtv\n\
+                         \nssdts\n\
+                         \ntnada\n\
+                         \svetve\n\
+                         \tesnvt\n\
+                         \vntsnd\n\
+                         \vrdear\n\
+                         \dvrsen\n\
+                         \enarar\n" @?= "advent"
   ]
