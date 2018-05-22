@@ -9,6 +9,7 @@ import Day03
 import Day04
 import Day05
 import Day06
+import Day07
 
 main :: IO ()
 main = defaultMain tests
@@ -21,6 +22,7 @@ tests = testGroup "Tests"
   , day04Tests
   , day05Tests
   , day06Tests
+  , day07Tests
   ]
 
 day01Tests :: TestTree
@@ -140,3 +142,13 @@ day06Tests = testGroup "Day 06"
                          \dvrsen\n\
                          \enarar\n" @?= "advent"
   ]
+
+day07Tests :: TestTree
+day07Tests = testGroup "Day 07"
+  [ testCase "countIPs" $
+    countIPs "abba[mnop]qrsnt\n\
+             \abcd[bddb]xyyx\n\
+             \aaaa[qwer]tyui\n\
+             \ioxxoj[asdfgh]zxcvbn\n\
+             \abba[bddb]qrsnt\n\
+             \abbabccb\n" @?= 3]

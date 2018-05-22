@@ -9,6 +9,7 @@ import Day03
 import Day04
 import Day05
 import Day06
+import Day07
 
 main :: IO ()
 main = do
@@ -50,4 +51,7 @@ main = do
     "day06b" -> do
       contents <- getContents
       putStrLn $ correctMessage head contents
+    "day07a" -> do
+      contents <- getContents
+      print $ countIPs contents
     na -> putStrLn $ "Unknown command: " ++ na
