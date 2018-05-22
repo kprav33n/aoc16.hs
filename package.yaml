@@ -29,7 +29,7 @@ library:
   - containers
   - text
   - bytestring
-  - pureMD5
+  - cryptonite
 
 executables:
   aoc16-exe:

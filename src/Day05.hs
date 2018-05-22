@@ -1,9 +1,10 @@
 module Day05 (doorPassword, doorPassword2) where
 
-import qualified Data.ByteString.Lazy.Char8 as C
-import Data.Digest.Pure.MD5 (md5)
+import Crypto.Hash (MD5, Digest, hash)
+import qualified Data.ByteString.Char8 as C
 import Data.Maybe (mapMaybe)
 import Data.Char (digitToInt)
+
 
 doorPassword :: Int -> String -> String
 doorPassword n d = (take n . map fst . mapMaybe (passwordChar2 . (++) d . show)) nonNeg
@@ -20,8 +21,11 @@ doorPassword2 n d = recur (emptyPassword n) (mapMaybe (passwordChar2 . (++) d . 
 nonNeg :: [Int]
 nonNeg = [0..]
 
+md5Strict :: C.ByteString -> Digest MD5
+md5Strict = hash
+
 md5Hash :: String -> String
-md5Hash = show . md5 . C.pack
+md5Hash = show . md5Strict . C.pack
 
 passwordChar2 :: String -> Maybe (Char,Char)
 passwordChar2 = recur (0::Int) . md5Hash
