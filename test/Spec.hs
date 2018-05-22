@@ -24,7 +24,7 @@ tests = testGroup "Tests"
   ]
 
 day01Tests :: TestTree
-day01Tests = testGroup "Day01 tests" [taxicabDistanceTests, makeInstructionsTests, hqDistanceTests]
+day01Tests = testGroup "Day 01" [taxicabDistanceTests, makeInstructionsTests, hqDistanceTests]
 
 taxicabDistanceTests :: TestTree
 taxicabDistanceTests = testGroup "taxicabDistance"
@@ -54,13 +54,13 @@ makeInstructionsTests = testGroup "makeInstructions"
   ]
 
 hqDistanceTests :: TestTree
-hqDistanceTests = testGroup "hqDistance unit test"
+hqDistanceTests = testGroup "hqDistance"
   [ testCase "R8, R4, R4, R8" $
     hqDistance [R 8, R 4, R 4, R 8] @?= 4
   ]
 
 day02Tests :: TestTree
-day02Tests = testGroup "Day02 tests"
+day02Tests = testGroup "Day 02"
   [ testCase "bathroomCode" $
     bathroomCode (Day02.makeInstructions "ULL\nRRDDD\nLURDL\nUUUUD") @?= "1985"
 
@@ -69,7 +69,7 @@ day02Tests = testGroup "Day02 tests"
   ]
 
 day03Tests :: TestTree
-day03Tests = testGroup "Day 03 tests"
+day03Tests = testGroup "Day 03"
   [
     testCase "numPossibleTriangles" $
     numPossibleTriangles (Day03.parseInput "5  10  25\n 5   7  9") @?= 1
@@ -79,7 +79,7 @@ day03Tests = testGroup "Day 03 tests"
   ]
 
 day04Tests :: TestTree
-day04Tests = testGroup "Day 04 tests"
+day04Tests = testGroup "Day 04"
   [ testCase "sectorSum" $
     sectorSum (Day04.parseInput "aaaaa-bbb-z-y-x-123[abxyz]\n\
                                 \a-b-c-d-e-f-g-h-987[abcde]\n\
@@ -95,7 +95,7 @@ day04Tests = testGroup "Day 04 tests"
   ]
 
 day05Tests :: TestTree
-day05Tests = testGroup "Day 05 tests"
+day05Tests = testGroup "Day 05"
   [ testCase "doorPassword" $
     doorPassword 2 "abc" @?= "18"
 
@@ -104,7 +104,7 @@ day05Tests = testGroup "Day 05 tests"
   ]
 
 day06Tests :: TestTree
-day06Tests = testGroup "Day 05 tests"
+day06Tests = testGroup "Day 06"
   [ testCase "correctMessage" $
     correctMessage "eedadn\n\
                     \drvtee\n\
