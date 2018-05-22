@@ -89,4 +89,7 @@ day05Tests :: TestTree
 day05Tests = testGroup "Day 05 tests"
   [ testCase "doorPassword" $
     doorPassword 2 "abc" @?= "18"
+
+  , testCase "doorPassword2" $
+    doorPassword2 2 "abc" @?= "05"
   ]

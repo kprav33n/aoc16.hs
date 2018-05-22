@@ -40,4 +40,7 @@ main = do
     "day05a" -> do
       line <- getLine
       putStrLn $ doorPassword 8 line
+    "day05b" -> do
+      line <- getLine
+      putStrLn $ doorPassword2 8 line
     na -> putStrLn $ "Unknown command: " ++ na
