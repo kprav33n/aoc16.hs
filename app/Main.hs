@@ -53,5 +53,8 @@ main = do
       putStrLn $ correctMessage head contents
     "day07a" -> do
       contents <- getContents
-      print $ countIPs contents
+      print $ countTLSSupportedIPs contents
+    "day07b" -> do
+      contents <- getContents
+      print $ countSSLSupportedIPs contents
     na -> putStrLn $ "Unknown command: " ++ na

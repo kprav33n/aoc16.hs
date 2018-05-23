@@ -144,11 +144,23 @@ day06Tests = testGroup "Day 06"
   ]
 
 day07Tests :: TestTree
-day07Tests = testGroup "Day 07"
-  [ testCase "countIPs" $
-    countIPs "abba[mnop]qrsnt\n\
-             \abcd[bddb]xyyx\n\
-             \aaaa[qwer]tyui\n\
-             \ioxxoj[asdfgh]zxcvbn\n\
-             \abba[bddb]qrsnt\n\
-             \abbabccb\n" @?= 3]
+day07Tests =
+  testGroup
+    "Day 07"
+    [ testCase "countTLSSupportedIPs" $
+      countTLSSupportedIPs
+        "abba[mnop]qrsnt\n\
+        \abcd[bddb]xyyx\n\
+        \aaaa[qwer]tyui\n\
+        \ioxxoj[asdfgh]zxcvbn\n\
+        \abba[bddb]qrsnt\n\
+        \abbabccb\n" @?=
+      3
+    , testCase "countSSLSupportedIPs" $
+      countSSLSupportedIPs
+        "aba[bab]xyz\n\
+        \xyx[xyx]xyx\n\
+        \aaa[kek]eke\n\
+        \zazbz[bzb]cdb" @?=
+      3
+    ]
