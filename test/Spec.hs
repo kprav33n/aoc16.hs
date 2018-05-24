@@ -186,10 +186,16 @@ day09Tests =
   testGroup
     "Day 09"
     [ testCase "decompress" $ do
-        decompress "ADVENT" @?= "ADVENT"
-        decompress "A(1x5)BC" @?= "ABBBBBC"
-        decompress "(3x3)XYZ" @?= "XYZXYZXYZ"
-        decompress "A(2x2)BCD(2x2)EFG" @?= "ABCBCDEFEFG"
-        decompress "(6x1)(1x3)A" @?= "(1x3)A"
-        decompress "X(8x2)(3x3)ABCY" @?= "X(3x3)ABC(3x3)ABCY"
+        decompressedLength "ADVENT" @?= 6
+        decompressedLength "A(1x5)BC" @?= 7
+        decompressedLength "(3x3)XYZ" @?= 9
+        decompressedLength "A(2x2)BCD(2x2)EFG" @?= 11
+        decompressedLength "(6x1)(1x3)A" @?= 6
+        decompressedLength "X(8x2)(3x3)ABCY" @?= 18
+
+    , testCase "decompressedLength2" $ do
+        decompressedLength2 "(3x3)XYZ" @?= 9
+        decompressedLength2 "X(8x2)(3x3)ABCY" @?= 20
+        decompressedLength2 "(27x12)(20x12)(13x14)(7x10)(1x12)A" @?= 241920
+        decompressedLength2 "(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN" @?= 445
     ]

@@ -1,10 +1,12 @@
-module Day09 (decompress) where
+module Day09
+  (decompressedLength
+  ,decompressedLength2) where
 
 import Control.Monad (replicateM)
 import Text.ParserCombinators.Parsec
 
-decompress :: String -> String
-decompress = recur []
+decompressedLength :: String -> Int
+decompressedLength = recur 0
   where
     recur acc [] = acc
     recur acc s =
@@ -12,8 +14,20 @@ decompress = recur []
         Left err -> undefined
         Right s ->
           case s of
-            (Uncompressed d,r) -> recur (acc ++ d) r
-            (Compressed d l i,r) -> recur (acc ++ take (l * i) (cycle d)) r
+            (Uncompressed d,r) -> recur (acc + length d) r
+            (Compressed d l i,r) -> recur (acc + i * l) r
+
+decompressedLength2 :: String -> Int
+decompressedLength2 = recur 0
+  where
+    recur acc [] = acc
+    recur acc s =
+      case parse parseData "data" s of
+        Left err -> undefined
+        Right s ->
+          case s of
+            (Uncompressed d,r) -> recur (acc + length d) r
+            (Compressed d l i,r) -> recur (acc + i * recur 0 d) r
 
 -- Parsers.
 
@@ -22,7 +36,6 @@ data Section
   | Compressed String
                Int
                Int
-  deriving (Show)
 
 parseData :: Parser (Section,String)
 parseData = try parseUncompressed <|> try parseCompressed
@@ -47,6 +60,5 @@ parseCompressed = do
 parseCData :: Int -> Parser String
 parseCData i = replicateM i anyChar
 
--- FIXME: Is there an existing construct for parsing decimal integers?
 int :: Parser Int
 int = read <$> many digit

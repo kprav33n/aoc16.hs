@@ -67,5 +67,8 @@ main = do
       print $ screenAfter 50 6 (Day08.parseInput contents)
     "day09a" -> do
       line <- getLine
-      print $ length $ decompress line
+      print $ decompressedLength line
+    "day09b" -> do
+      line <- getLine
+      print $ decompressedLength2 line
     na -> putStrLn $ "Unknown command: " ++ na
