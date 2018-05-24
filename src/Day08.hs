@@ -1,7 +1,7 @@
 module Day08
   ( parseInput
   , numLitPixelsAfter
-  , rotate
+  , screenAfter
   ) where
 
 import Text.ParserCombinators.Parsec
@@ -27,9 +27,12 @@ parseInput ls = map f (lines ls)
         Left err -> undefined
         Right r -> r
 
+screenAfter :: Int -> Int -> [Instruction] -> Screen
+screenAfter c r is = executeInstructions (newScreen c r) is
+
 numLitPixelsAfter :: Int -> Int -> [Instruction] -> Int
 numLitPixelsAfter c r is = (length . filter (== True) . concat) s
-  where Screen s = executeInstructions (newScreen c r) is
+  where Screen s = screenAfter c r is
 
 -- Internals
 

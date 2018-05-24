@@ -61,4 +61,7 @@ main = do
     "day08a" -> do
       contents <- getContents
       print $ numLitPixelsAfter 50 6 (Day08.parseInput contents)
+    "day08b" -> do
+      contents <- getContents
+      putStrLn $ show $ screenAfter 50 6 (Day08.parseInput contents)
     na -> putStrLn $ "Unknown command: " ++ na
