@@ -10,6 +10,7 @@ import Day04
 import Day05
 import Day06
 import Day07
+import Day08
 
 main :: IO ()
 main = do
@@ -57,4 +58,7 @@ main = do
     "day07b" -> do
       contents <- getContents
       print $ countSSLSupportedIPs contents
+    "day08a" -> do
+      contents <- getContents
+      print $ numLitPixelsAfter 50 6 (Day08.parseInput contents)
     na -> putStrLn $ "Unknown command: " ++ na

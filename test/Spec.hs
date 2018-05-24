@@ -10,6 +10,7 @@ import Day04
 import Day05
 import Day06
 import Day07
+import Day08
 
 main :: IO ()
 main = defaultMain tests
@@ -23,6 +24,7 @@ tests = testGroup "Tests"
   , day05Tests
   , day06Tests
   , day07Tests
+  , day08Tests
   ]
 
 day01Tests :: TestTree
@@ -164,3 +166,16 @@ day07Tests =
         \zazbz[bzb]cdb" @?=
       3
     ]
+
+day08Tests :: TestTree
+day08Tests =
+  testGroup
+    "Day 08"
+    [ testCase "numLitPixelsAfter" $
+      (numLitPixelsAfter 7 3 . Day08.parseInput)
+        "rect 3x2\n\
+        \rotate column x=1 by 1\n\
+        \rotate row y=0 by 4\n\
+        \rotate column x=1 by 1" @?= 6
+    ]
+

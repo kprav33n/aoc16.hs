@@ -25,11 +25,12 @@ dependencies:
 library:
   source-dirs: src
   dependencies:
-  - split
-  - containers
-  - text
   - bytestring
+  - containers
   - cryptonite
+  - parsec
+  - split
+  - text
 
 executables:
   aoc16-exe:

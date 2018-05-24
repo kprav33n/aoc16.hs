@@ -25,7 +25,7 @@ scanABBA = recur False (False,False)
       | a == '[' || a == ']' = recur (not h) (o,i) r
       | otherwise = recur h (o,i) (b:c:d:rest)
       where
-        r = (b:c:d:rest)
+        r = b:c:d:rest
     recur _ t _ = t
 
 supportsSSL :: String -> Bool
