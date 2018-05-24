@@ -11,6 +11,7 @@ import Day05
 import Day06
 import Day07
 import Day08
+import Day09
 
 main :: IO ()
 main = defaultMain tests
@@ -25,6 +26,7 @@ tests = testGroup "Tests"
   , day06Tests
   , day07Tests
   , day08Tests
+  , day09Tests
   ]
 
 day01Tests :: TestTree
@@ -179,3 +181,15 @@ day08Tests =
         \rotate column x=1 by 1" @?= 6
     ]
 
+day09Tests :: TestTree
+day09Tests =
+  testGroup
+    "Day 09"
+    [ testCase "decompress" $ do
+        decompress "ADVENT" @?= "ADVENT"
+        decompress "A(1x5)BC" @?= "ABBBBBC"
+        decompress "(3x3)XYZ" @?= "XYZXYZXYZ"
+        decompress "A(2x2)BCD(2x2)EFG" @?= "ABCBCDEFEFG"
+        decompress "(6x1)(1x3)A" @?= "(1x3)A"
+        decompress "X(8x2)(3x3)ABCY" @?= "X(3x3)ABC(3x3)ABCY"
+    ]

@@ -11,6 +11,7 @@ import Day05
 import Day06
 import Day07
 import Day08
+import Day09
 
 main :: IO ()
 main = do
@@ -63,5 +64,8 @@ main = do
       print $ numLitPixelsAfter 50 6 (Day08.parseInput contents)
     "day08b" -> do
       contents <- getContents
-      putStrLn $ show $ screenAfter 50 6 (Day08.parseInput contents)
+      print $ screenAfter 50 6 (Day08.parseInput contents)
+    "day09a" -> do
+      line <- getLine
+      print $ length $ decompress line
     na -> putStrLn $ "Unknown command: " ++ na

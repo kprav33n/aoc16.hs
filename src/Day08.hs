@@ -28,7 +28,7 @@ parseInput ls = map f (lines ls)
         Right r -> r
 
 screenAfter :: Int -> Int -> [Instruction] -> Screen
-screenAfter c r is = executeInstructions (newScreen c r) is
+screenAfter c r = executeInstructions (newScreen c r)
 
 numLitPixelsAfter :: Int -> Int -> [Instruction] -> Int
 numLitPixelsAfter c r is = (length . filter (== True) . concat) s
