@@ -12,6 +12,7 @@ import Day06
 import Day07
 import Day08
 import Day09
+import Day10
 
 main :: IO ()
 main = do
@@ -71,4 +72,7 @@ main = do
     "day09b" -> do
       line <- getLine
       print $ decompressedLength2 line
+    "day10a" -> do
+      contents <- getContents
+      print $ (findBotFor 17 61 . statesAfter . Day10.parseInput) contents
     na -> putStrLn $ "Unknown command: " ++ na

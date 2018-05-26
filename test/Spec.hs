@@ -12,6 +12,7 @@ import Day06
 import Day07
 import Day08
 import Day09
+import Day10
 
 main :: IO ()
 main = defaultMain tests
@@ -27,6 +28,7 @@ tests = testGroup "Tests"
   , day07Tests
   , day08Tests
   , day09Tests
+  , day10Tests
   ]
 
 day01Tests :: TestTree
@@ -198,4 +200,18 @@ day09Tests =
         decompressedLength2 "X(8x2)(3x3)ABCY" @?= 20
         decompressedLength2 "(27x12)(20x12)(13x14)(7x10)(1x12)A" @?= 241920
         decompressedLength2 "(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN" @?= 445
+    ]
+
+day10Tests :: TestTree
+day10Tests =
+  testGroup
+    "Day 10"
+    [ testCase "stateAfter" $
+        (findBotFor 5 2 . statesAfter . Day10.parseInput)
+        "value 5 goes to bot 2\n\
+        \bot 2 gives low to bot 1 and high to bot 0\n\
+        \value 3 goes to bot 1\n\
+        \bot 1 gives low to output 1 and high to bot 0\n\
+        \bot 0 gives low to output 2 and high to output 0\n\
+        \value 2 goes to bot 2" @?= 2
     ]
