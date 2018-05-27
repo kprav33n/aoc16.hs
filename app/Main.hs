@@ -75,4 +75,7 @@ main = do
     "day10a" -> do
       contents <- getContents
       print $ (findBotFor 17 61 . statesAfter . Day10.parseInput) contents
+    "day10b" -> do
+      contents <- getContents
+      print $ (chipsProduct . Day10.parseInput) contents
     na -> putStrLn $ "Unknown command: " ++ na

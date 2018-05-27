@@ -1,12 +1,12 @@
 module Day10
   (parseInput
   ,statesAfter
-  ,findBotFor) where
+  ,findBotFor
+  ,chipsProduct) where
 
 import Text.ParserCombinators.Parsec
 import qualified Data.List as List
 import qualified Data.Map.Strict as Map
-import Debug.Trace
 import qualified Control.Monad.State as SM
 
 data Entity
@@ -76,6 +76,16 @@ findBotFor a b (x:xs) =
     Bot b -> b
     _ -> undefined
   else findBotFor a b xs
+
+chipsProduct :: [Instruction] -> Int
+chipsProduct is =
+  zero * one * two
+  where
+    (eState, st) = SM.runState (applyAssignments is) (Map.empty, (Bot 0, []))
+    esMap = SM.execState (applyComparisons (take (50 * length is) (cycle is))) st
+    [zero] = Map.findWithDefault [] (Output 0) (fst esMap)
+    [one] = Map.findWithDefault [] (Output 1) (fst esMap)
+    [two] = Map.findWithDefault [] (Output 2) (fst esMap)
 
 -- Internals.
 
