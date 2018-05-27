@@ -6,7 +6,7 @@ module Day10
 
 import Text.ParserCombinators.Parsec
 import qualified Data.List as List
-import qualified Data.Map.Strict as Map
+import qualified Data.Map.Lazy as Map
 import qualified Control.Monad.State as SM
 
 data Entity
@@ -79,13 +79,16 @@ findBotFor a b (x:xs) =
 
 chipsProduct :: [Instruction] -> Int
 chipsProduct is =
-  zero * one * two
+  recur (cycle is) st
   where
     (eState, st) = SM.runState (applyAssignments is) (Map.empty, (Bot 0, []))
-    esMap = SM.execState (applyComparisons (take (50 * length is) (cycle is))) st
-    [zero] = Map.findWithDefault [] (Output 0) (fst esMap)
-    [one] = Map.findWithDefault [] (Output 1) (fst esMap)
-    [two] = Map.findWithDefault [] (Output 2) (fst esMap)
+    recur (i:is) st =
+      case (Map.lookup (Output 0) esMap
+           ,Map.lookup (Output 1) esMap
+           ,Map.lookup (Output 2) esMap) of
+        (Just [x],Just [y],Just [z]) -> x * y * z
+        _ -> recur is (SM.execState (applyComparison i) st)
+      where esMap = fst st
 
 -- Internals.
 
